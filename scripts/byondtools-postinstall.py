@@ -64,5 +64,5 @@ for fileName in glob.glob(os.path.join(scriptDir, "*.py")):
         command = "{} {} %*".format(python, targetFile)
         open(batchFileName, "w").write("@echo off\n\n{}".format(command))
     else:
-        os.chmod(strippedName, 0755)
+        os.chmod(strippedName, 0o755)
         print('CHMOD 755 {}'.format(strippedName))

@@ -64,10 +64,10 @@ class DreamSyntax(object):
     def ParseString(self, filename):
         try:
             return self.syntax.parseString(string)
-        except pyp.ParseException, err:
-            print err.line
-            print "-"*(err.column - 1) + "^"
-            print err
+        except pyp.ParseException as err:
+            print(err.line)
+            print("-"*(err.column - 1) + "^")
+            print(err)
         
     def buildSyntax(self):
         '''WIP'''

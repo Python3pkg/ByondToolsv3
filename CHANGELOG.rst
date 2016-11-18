@@ -1,4 +1,10 @@
 =================
+0.1.0 - 18/11/2016
+=================
+
+* Split get-dmi-data into two utilities - old header extraction is now under get-dmi-header, and get-dmi-data now produces a generated header.
+
+=================
 0.0.1 - 18/11/2016
 =================
 

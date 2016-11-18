@@ -35,7 +35,7 @@ options = {}
 scripts = ['scripts/{}.py'.format(x) for x in scripts]
     
 setup(name='BYONDToolsv3',
-    version='0.0.1',
+    version='0.1.0',
     description='Tools and interfaces for interacting with the BYOND game engine, adapted to Python 3.',
     long_description = (read('README.rst') + '\n\n' +
                         read('CHANGELOG.rst')),# + '\n\n' +

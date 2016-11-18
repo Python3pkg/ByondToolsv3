@@ -142,11 +142,17 @@ def compare(theirsfile, minefile, parser, reportstream, **kwargs):
                     os.remove(new2theirsFilename)
                     #print('RM {0}'.format(new2theirsFilename))
                     
-def get_dmi_data(path, parser):
+def get_dmi_header(path, parser):
     if(os.path.isfile(path)):
         dmi = DMI(path)
         print(dmi.getHeader())        
-               
+
+def get_dmih(path, parser):
+    if(os.path.isfile(path)):
+       dmi = DMI(path)
+       dmi.loadAll()
+       print(dmi.getDMIH())
+              
 def set_dmi_data(path, headerFile, parser):
     if(os.path.isfile(path)):
         dmi = DMI(path)

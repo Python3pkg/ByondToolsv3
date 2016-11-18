@@ -42,9 +42,12 @@ def main():
 	_compare_all.add_argument('mine', type=str, help='The other side.', metavar='mine/')
 	_compare_all.add_argument('report', type=str, help='The file the report is saved to', metavar='report.txt')
 	
-	_get_dmi_data = command.add_parser('get-dmi-data', help='Extract DMI header')
+	_get_dmi_header = command.add_parser('get-dmi-header', help='Extract DMI header')
+	_get_dmi_header.add_argument('file', type=str, help='DMI file', metavar='file.dmi')
+        
+	_get_dmi_data = command.add_parser('get-dmi-data', help='Generate an extended DMI information header')
 	_get_dmi_data.add_argument('file', type=str, help='DMI file', metavar='file.dmi')
-
+        
 	_set_dmi_data = command.add_parser('set-dmi-data', help='Set DMI header')
 	_set_dmi_data.add_argument('file', type=str, help='One side of the difference', metavar='file.dmi')
 	_set_dmi_data.add_argument('metadata', type=str, help='DMI header file', metavar='metadata.txt')
@@ -64,8 +67,10 @@ def main():
 		disassemble(args.file, args.destination, args)
 	elif args.MODE == 'disassemble-all':
 		disassemble_all(args.source, args.destination, args)
+	elif args.MODE == 'get-dmi-header':
+		get_dmi_header(args.file, args)
 	elif args.MODE == 'get-dmi-data':
-		get_dmi_data(args.file, args)
+		get_dmih(args.file, args)
 	elif args.MODE == 'set-dmi-data':
 		set_dmi_data(args.file, args.metadata, args)
 	elif args.MODE == 'cleanup':

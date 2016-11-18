@@ -38,8 +38,8 @@ setup(name='BYONDToolsv3',
     version='0.1.0',
     description='Tools and interfaces for interacting with the BYOND game engine, adapted to Python 3.',
     long_description = (read('README.rst') + '\n\n' +
-                        read('CHANGELOG.rst')),# + '\n\n' +
-                        #read('AUTHORS.rst'))
+                        read('CHANGELOG.rst') + '\n\n' +
+                        read('AUTHORS.rst')),
     url='http://github.com/ComicIronic/BYONDToolsv3',
     author='Comic',
     author_email='ivb@vanbakel.io',

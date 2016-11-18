@@ -34,15 +34,15 @@ class install(_install):
 options = {}
 scripts = ['scripts/{}.py'.format(x) for x in scripts]
     
-setup(name='BYONDTools',
-    version='0.1.7',
-    description='Tools and interfaces for interacting with the BYOND game engine.',
+setup(name='BYONDToolsv3',
+    version='0.0.1',
+    description='Tools and interfaces for interacting with the BYOND game engine, adapted to Python 3.',
     long_description = (read('README.rst') + '\n\n' +
                         read('CHANGELOG.rst')),# + '\n\n' +
                         #read('AUTHORS.rst'))
-    url='http://github.com/N3X15/BYONDTools',
-    author='N3X15',
-    author_email='nexisentertainment@gmail.com',
+    url='http://github.com/ComicIronic/BYONDToolsv3',
+    author='Comic',
+    author_email='ivb@vanbakel.io',
     license='MIT',
     packages=find_packages(exclude=['tests*']),
     package_data = {'byond' : ['data/stdlib/*'] },

@@ -15,14 +15,15 @@ maps, and DMIs.
 Requirements
 ------------
 
-* Python 2.7+
+* Python 3 
 * Pillow (fork of PIL)
 * numpy
 
 Use
 ---
 
-Initial documentation is taking shape at http://ss13.pomf.se/wiki/index.php/User:N3X15/Guide_to_BYONDTools
+The previous documentation is taking shape at http://ss13.pomf.se/wiki/index.php/User:N3X15/Guide_to_BYONDTools
+This may be out of step with the newest version.
 
 API Status
 ----------
@@ -43,4 +44,4 @@ Support
 -------
 
 No commercial or official support is provided, but you are free to 
-submit bug reports or harass N3X15 in irc.rizon.net #vgstation.
+submit bug reports or harass Comic (ComicVG/ComicIronic) in irc.rizon.net #vgstation.

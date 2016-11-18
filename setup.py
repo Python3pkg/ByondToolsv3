@@ -40,7 +40,8 @@ setup(name='BYONDToolsv3',
     long_description = (read('README.rst') + '\n\n' +
                         read('CHANGELOG.rst') + '\n\n' +
                         read('AUTHORS.rst')),
-    url='http://github.com/ComicIronic/BYONDToolsv3',
+    url='https://github.com/ComicIronic/BYONDToolsv3',
+    download_url='https://github.com/ComicIronic/BYONDToolsv3/tarball/v0.1.0',
     author='Comic',
     author_email='ivb@vanbakel.io',
     license='MIT',

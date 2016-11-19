@@ -1,6 +1,7 @@
 from byond import directions
 from PIL import Image
 import logging
+import hashlib
 
 class State:
     # So we don't overwrite the static state.
@@ -74,7 +75,7 @@ state = "void"
             _dir = directions.IMAGE_INDICES[vdir]
             o += '\n\t\tdirection "%s" {' % directions.getNameFromDir(_dir)
             for f in range(self.frames):
-                o += '\n\t\t\t"%s"' % self.getFrame(_dir, f)
+                o += '\n\t\t\t"%s"' % hashlib.md5(self.getFrame(_dir, f).tobytes()).hexdigest()
             o += '\n\t\t}'
         o += '\n\t}'
         o += "\n}"

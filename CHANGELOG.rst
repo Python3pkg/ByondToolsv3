@@ -1,4 +1,10 @@
 =================
+0.1.2 - 19/11/2016
+=================
+
+* Modified get-dmi-data to output the PIL image's md5 instead of Python's default to-string behaviour.
+
+=================
 0.1.1 - 19/11/2016
 =================
 
@@ -63,11 +69,4 @@
 
 * Fixed line-ending stupidity on Linux
 * Fixed python trying to interpret DME-derived paths literally (mostly path seperator stuff)
-
-=================
-0.1.1c - 6/10/2014
-=================
-
-* Missed data directory.  Whoops.
-* Object tree: Fixed mishandling of list() in variables when [ is on the same line.
 

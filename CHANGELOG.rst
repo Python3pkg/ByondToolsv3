@@ -1,4 +1,10 @@
+==================
+0.1.3 - 19/11/2016
 =================
+
+* Fixed an issue with the script-copying helper not forming bangs correctly on Windows.
+
+================
 0.1.2 - 19/11/2016
 =================
 
@@ -62,11 +68,4 @@
 =================
 
 * Fixed broken post-install operation on Linux (sorry)
-
-=================
-0.1.2 - 6/17/2014
-=================
-
-* Fixed line-ending stupidity on Linux
-* Fixed python trying to interpret DME-derived paths literally (mostly path seperator stuff)
 

@@ -9,7 +9,14 @@ import glob, os, sys
 
 vars = distutils.sysconfig.get_config_vars()
 prefix = vars["prefix"]
-python = sys.executable #os.path.join(prefix, "python.exe")
+syspython = sys.executable #os.path.join(prefix, "python.exe")
+
+# Default shebang for python - used for Windows cases
+# As normally, the windows python path has spaces, and shebang notation breaks
+execpython = '/usr/bin/env python'
+# But linux paths don't always expand, so we use the system path instead
+if sys.platform != 'win32':
+    execpython = syspython
 
 scriptDir = ''
 # Almost verbatim from Pip's sourcecode.
@@ -54,14 +61,14 @@ for fileName in glob.glob(os.path.join(scriptDir, "*.py")):
     if sys.platform == 'win32':
         targetFile = fullName
     with open(targetFile, "w") as outFile:
-        outFile.write("#!{}\n".format(python)) # Not sure why this is done on Windows...
+        outFile.write("#!{}\n".format(execpython)) # Required for bash instances inside Windows
         for line in lines[startidx:]:
             outFile.write(line.rstrip('\r\n \t')+"\n") # Shit happens on Linux if this isn't done.
 
     if sys.platform == 'win32':
         # create the batch file
         batchFileName = strippedName + ".bat"
-        command = "{} {} %*".format(python, targetFile)
+        command = "{} {} %*".format(syspython, targetFile) # Note system python path use here for batch
         open(batchFileName, "w").write("@echo off\n\n{}".format(command))
     else:
         os.chmod(strippedName, 0o755)

@@ -34,14 +34,16 @@ class install(_install):
 options = {}
 scripts = ['scripts/{}.py'.format(x) for x in scripts]
     
+current_version='0.1.1'
+
 setup(name='BYONDToolsv3',
-    version='0.1.0',
+    version=current_version,
     description='Tools and interfaces for interacting with the BYOND game engine, adapted to Python 3.',
     long_description = (read('README.rst') + '\n\n' +
                         read('CHANGELOG.rst') + '\n\n' +
                         read('AUTHORS.rst')),
     url='https://github.com/ComicIronic/BYONDToolsv3',
-    download_url='https://github.com/ComicIronic/BYONDToolsv3/tarball/v0.1.0',
+    download_url='https://github.com/ComicIronic/BYONDToolsv3/tarball/v' + current_version,
     author='Comic',
     author_email='ivb@vanbakel.io',
     license='MIT',

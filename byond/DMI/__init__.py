@@ -117,7 +117,7 @@ class DMI:
                 meta.add_text(k, v, 1)
                 
         # Only need one - Rob
-        meta.add_text(b'Description', manifest.encode('ascii'), 1)
+        meta.add_text('Description', manifest.encode('ascii'), 1)
 
         # and save
         sheet.save(to, 'PNG', pnginfo=meta)
@@ -165,9 +165,9 @@ class DMI:
     
     def getHeader(self):
         img = Image.open(self.filename)
-        if(b'Description' not in img.info):
+        if('Description' not in img.info):
             raise Exception("DMI Description is not in the information headers!")
-        return img.info[b'Description'].decode('ascii')
+        return img.info['Description']
     
     def setHeader(self, newHeader, dest):
         img = Image.open(self.filename)
@@ -184,7 +184,7 @@ class DMI:
                 meta.add_text(k, v, 1)
                 
         # Only need one - Rob
-        meta.add_text(b'Description', newHeader.encode('ascii'), 1)
+        meta.add_text('Description', newHeader.encode('ascii'), 1)
 
         # and save
         img.save(dest + '.tmp', 'PNG', pnginfo=meta)
@@ -213,14 +213,14 @@ class DMI:
         self.size = self.img.size
 
         # Sanity
-        if(b'Description' not in self.img.info):
+        if('Description' not in self.img.info):
             raise Exception("DMI Description is not in the information headers!")
         
         # Load pixels from image
         self.pixels = self.img.load()
         
         # Load DMI header
-        desc = self.img.info[b'Description'].decode('ascii')
+        desc = self.img.info['Description']
         """
 version = 4.0
         width = 32

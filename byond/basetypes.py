@@ -112,7 +112,7 @@ class BYONDValue:
         decl += [name]
         constructed = '/'.join(decl)
         if self.value is not None:
-            constructed += ' = {0}'.format(str(self))
+            constructed += ' = {0}'.format(str(self).encode('utf-8'))
         return constructed
 
 class BYONDFileRef(BYONDValue):
@@ -263,7 +263,7 @@ class Atom:
         
     def UpdateHash(self, no_map_update=False):
         if self._hash is None:
-            self._hash = hashlib.md5(str(self)).hexdigest()
+            self._hash = hashlib.md5(str(self).encode('utf-8')).hexdigest()
 
     def UpdateMap(self, map):
         self.UpdateHash()
@@ -373,7 +373,7 @@ class Atom:
                     # if debugInheritance:print('  {0}[{2}] -> {1}'.format(self.parent.path,self.path,key))
         # assert 'name' in self.properties
         self.ob_inherited = True
-        for k in self.children.iterkeys():
+        for k in self.children.keys():
             self.children[k].InheritProperties()
 
     def __ne__(self, atom):

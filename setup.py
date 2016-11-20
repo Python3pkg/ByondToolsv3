@@ -34,7 +34,7 @@ class install(_install):
 options = {}
 scripts = ['scripts/{}.py'.format(x) for x in scripts]
     
-current_version='0.1.3'
+current_version='0.1.4'
 
 setup(name='BYONDToolsv3',
     version=current_version,

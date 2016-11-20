@@ -7,7 +7,7 @@ Usage:
 
 dmi_compile.py - Generates a large DMI from several smaller DMIs.
 
-Specifically used for making icons/mob/items_(left|right)hand.dmi in SS13.
+Specifically used for making icons/mob/items()_(left|right)hand.dmi in SS13.
 
 Copyright 2013 Rob "N3X15" Nelson <nexis@7chan.org>
 

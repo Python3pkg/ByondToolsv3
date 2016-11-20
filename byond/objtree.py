@@ -125,7 +125,7 @@ class ObjectTree:
         self.LeavePreprocessorDirectives = options.get('preprocessor_directives', False)
         
         nit = self.ignoreTokens.copy()
-        for _, stop in self.ignoreTokens.iteritems():
+        for _, stop in self.ignoreTokens.items():
             nit[stop] = None
         self.ignoreTokens = nit
         
@@ -396,7 +396,7 @@ class ObjectTree:
                 line = line.rstrip()
                 self.lineBeforePreprocessing = line
                 line_len = len(line)
-                for i in xrange(line_len):
+                for i in range(line_len):
                     c = line[i]
                     nc = ''
                     if line_len > i + 1:

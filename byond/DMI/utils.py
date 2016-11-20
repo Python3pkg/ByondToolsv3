@@ -100,7 +100,7 @@ def compare(theirsfile, minefile, parser, reportstream, **kwargs):
                 o += '\n + {0}: {1}'.format(theirs[state].displayName(), theirs[state].ToString())
             elif kwargs.get('check_changed',True):
                 diff_count=0
-                for i in xrange(len(theirs[state].icons)):
+                for i in range(len(theirs[state].icons)):
                     theirF = theirs[state].icons[i]
                     myF = theirs[state].icons[i] 
                     
@@ -108,7 +108,7 @@ def compare(theirsfile, minefile, parser, reportstream, **kwargs):
                     myData = list(myF.getdata())
                     #diff = []
                     
-                    for i in xrange(len(theirData)):
+                    for i in range(len(theirData)):
                         dr = theirData[i][0] - myData[i][0]
                         dg = theirData[i][1] - myData[i][1]
                         db = theirData[i][2] - myData[i][2]

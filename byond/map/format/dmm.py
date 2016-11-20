@@ -13,7 +13,7 @@ def chunker(iterable, chunksize):
     Return elements from the iterable in `chunksize`-ed lists. The last returned
     chunk may be smaller (if length of collection is not divisible by `chunksize`).
 
-    >>> print list(chunker(xrange(10), 3))
+    >>> print list(chunker(range(10), 3))
     [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]]
     """
     i = iter(iterable)
@@ -240,7 +240,7 @@ class DMMFormat(BaseMapFormat):
         
         string = string.rstrip()
         line_len = len(string)
-        for i in xrange(line_len):
+        for i in range(line_len):
             c = string[i]
             pc = ''
             if i > 0:
@@ -324,7 +324,7 @@ class DMMFormat(BaseMapFormat):
             #    val = base_atom.properties[key]
             #    if key not in currentAtom.properties:
             #        currentAtom.properties[key] = val
-            for key in currentAtom.properties.iterkeys():
+            for key in currentAtom.properties.keys():
                 val = currentAtom.properties[key].value
                 if key in base_atom.properties and val == base_atom.properties[key].value:
                     if key in currentAtom.mapSpecified:
@@ -382,7 +382,7 @@ class DMMFormat(BaseMapFormat):
     def SerializeTile(self, tile):
         # "aat" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/turf/simulated/floor/plating,/area/security/prison)
         atoms = []
-        for i in xrange(len(tile.instances)):
+        for i in range(len(tile.instances)):
             atom = self.map.GetInstance(tile.instances[i])
             if atom and atom.path != '':
                 atoms += [self.SerializeAtom(atom)]
@@ -499,12 +499,12 @@ class DMMFormat(BaseMapFormat):
                 self.type2TID[strt] = stid
             self.log.info(' Wrote types in {}...'.format(getElapsed(start)))
             lap = clock()
-            for z in xrange(len(self.map.zLevels)):
+            for z in range(len(self.map.zLevels)):
                 self.log.debug(' Writing z={}...'.format(z))
                 f.write('\n(1,1,{0}) = {{"\n'.format(z + 1))
                 zlevel = self.map.zLevels[z]
-                for y in xrange(zlevel.height):
-                    for x in xrange(zlevel.width):
+                for y in range(zlevel.height):
+                    for x in range(zlevel.width):
                         tile = self.map.GetTileAt(x, y, z)
                         thash = tile.GetHash()
                         f.write(self.type2TID[thash])

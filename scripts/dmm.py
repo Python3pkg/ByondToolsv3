@@ -284,7 +284,7 @@ def compare_dmm(args):
             'atoms':0
         }
         print('Comparing maps...')
-        for z in xrange(len(theirs_dmm.zLevels)):
+        for z in range(len(theirs_dmm.zLevels)):
             t_zlev = theirs_dmm.zLevels[z]
             m_zlev = mine_dmm.zLevels[z]
             if t_zlev.height != m_zlev.height or t_zlev.width != m_zlev.width:

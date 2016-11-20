@@ -317,9 +317,9 @@ state = "void2"
                 y += 1
             
     def extractAllStates(self, dest, flags=0):
-        for _, state in self.states.iteritems():
+        for _, state in self.states.items():
             # state = State()
-            for i in xrange(len(state.positions)):
+            for i in range(len(state.positions)):
                 x, y = state.positions[i]
                 self.extractIconAt(state, dest, x, y, i)
              

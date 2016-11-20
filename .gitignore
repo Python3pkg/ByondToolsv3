@@ -2,6 +2,6 @@
 /doc/_build
 *.bak
 /.tox
-/BYONDTools.egg-info
+/BYONDToolsv3.egg-info
 /build
 /dist

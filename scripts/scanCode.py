@@ -113,9 +113,9 @@ for path in otr.Atoms:
                     warnings['{0}:{1}: {2}'.format(child.filename, child.line + i, code)] = line_warnings
                     alerts += len(line_warnings)
         if len(warnings) > 0:
-            print('IN {0}/{1}:'.format(path, childName))
+            print(('IN {0}/{1}:'.format(path, childName)))
             for context in warnings:
-                print('  {0}'.format(context))
+                print(('  {0}'.format(context)))
                 for warning in warnings[context]:
-                    print('    WARNING: {0}'.format(warning))
-print('{0} processed procs, {1} alerts raised'.format(procs, alerts))
+                    print(('    WARNING: {0}'.format(warning)))
+print(('{0} processed procs, {1} alerts raised'.format(procs, alerts)))

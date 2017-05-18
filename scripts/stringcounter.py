@@ -42,7 +42,7 @@ def CountStringsIn(filename):
                 c = f.read(1)
                 if not c:
                     if inString:
-                        print('{0}: UNTERMINATED STRING!'.format(filename))
+                        print(('{0}: UNTERMINATED STRING!'.format(filename)))
                     return numStrings
                 if not inString:
                     if c == '/':
@@ -148,10 +148,10 @@ def ProcessFiles(top='.', ext='.dm'):
                 if numStrings > maxStringsInFile[0]:
                     maxStringsInFile = [numStrings, filepath]
                 numFilesTotal += 1
-                print(','.join([filepath, str(numStrings)]))
-    print('>>> Total Strings: {0}'.format(numStringsTotal))
-    print('>>> Total Files:   {0}'.format(numFilesTotal))
-    print('>>> Max Strings:   {0} in {1}'.format(maxStringsInFile[0], maxStringsInFile[1]))
+                print((','.join([filepath, str(numStrings)])))
+    print(('>>> Total Strings: {0}'.format(numStringsTotal)))
+    print(('>>> Total Files:   {0}'.format(numFilesTotal)))
+    print(('>>> Max Strings:   {0} in {1}'.format(maxStringsInFile[0], maxStringsInFile[1])))
 
 def ProcessFilesFromDME(dmefile='baystation12.dme', ext='.dm'):
     numStringsTotal = 0
@@ -192,9 +192,9 @@ def ProcessFilesFromDME(dmefile='baystation12.dme', ext='.dm'):
                         else:
                             if inString:
                                 filename += c
-    print('>>> Total Strings: {0}'.format(numStringsTotal))
-    print('>>> Total Files:   {0}'.format(numFilesTotal))
-    print('>>> Max Strings:   {0} in {1}'.format(maxStringsInFile[0], maxStringsInFile[1]))
+    print(('>>> Total Strings: {0}'.format(numStringsTotal)))
+    print(('>>> Total Files:   {0}'.format(numFilesTotal)))
+    print(('>>> Max Strings:   {0} in {1}'.format(maxStringsInFile[0], maxStringsInFile[1])))
 
 if os.path.isdir(sys.argv[1]):
     for root, _, files in os.walk(sys.argv[1]):

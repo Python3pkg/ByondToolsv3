@@ -51,7 +51,7 @@ def BYOND2RGBA(colorstring, alpha=255):
     else:
         return _COLOR_LOOKUP[colorstring]
     
-for name, color in COLORS.items():
+for name, color in list(COLORS.items()):
     _COLOR_LOOKUP[name] = BYOND2RGBA(color)
     
 import re, hashlib, collections
@@ -160,7 +160,7 @@ class BYONDList(BYONDValue):
     def __str__(self):
         vals = []
         if type(self.value) is dict:
-            for k,v in self.value.items():
+            for k,v in list(self.value.items()):
                 wk=byond_wrap(k)
                 wv=byond_wrap(v)
                 vals.append('{} = {}'.format(k,v))
@@ -373,7 +373,7 @@ class Atom:
                     # if debugInheritance:print('  {0}[{2}] -> {1}'.format(self.parent.path,self.path,key))
         # assert 'name' in self.properties
         self.ob_inherited = True
-        for k in self.children.keys():
+        for k in list(self.children.keys()):
             self.children[k].InheritProperties()
 
     def __ne__(self, atom):
@@ -401,12 +401,12 @@ class Atom:
         try:
             myLayer = self.handle_math(self.getProperty('layer', myLayer))
         except ValueError:
-            print('Failed to parse {0} as float.'.format(self.properties['layer'].value))
+            print(('Failed to parse {0} as float.'.format(self.properties['layer'].value)))
             pass
         try:
             otherLayer = self.handle_math(other.getProperty('layer', otherLayer))
         except ValueError:
-            print('Failed to parse {0} as float.'.format(other.properties['layer'].value))
+            print(('Failed to parse {0} as float.'.format(other.properties['layer'].value)))
             pass
         return myLayer > otherLayer
         
@@ -418,18 +418,18 @@ class Atom:
         try:
             myLayer = self.handle_math(self.getProperty('layer', myLayer))
         except ValueError:
-            print('Failed to parse {0} as float.'.format(self.properties['layer'].value))
+            print(('Failed to parse {0} as float.'.format(self.properties['layer'].value)))
             pass
         try:
             otherLayer = self.handle_math(other.getProperty('layer', otherLayer))
         except ValueError:
-            print('Failed to parse {0} as float.'.format(other.properties['layer'].value))
+            print(('Failed to parse {0} as float.'.format(other.properties['layer'].value)))
             pass
         return myLayer < otherLayer
         
     def __str__(self):
         atomContents = []
-        for key, val in self.properties.items():
+        for key, val in list(self.properties.items()):
             atomContents += ['{0}={1}'.format(key, val)]
         return '{}{{{}}}'.format(self.path, ';'.join(atomContents))
     
@@ -567,7 +567,7 @@ def byond_wrap(value):
     T = type(value)
     if T is BYONDValue:
         return value
-    if T is str or T is unicode:
+    if T is str or T is str:
         return BYONDString(value)
     elif T is list or T is dict:
         return BYONDList(value)

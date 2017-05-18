@@ -40,21 +40,21 @@ scripts = [
     # Our post-install.  Now run on Linux, as well.
     "byondtools-postinstall"
 ]
-print(" Checking {} for things to fix...".format(scriptDir))
+print((" Checking {} for things to fix...".format(scriptDir)))
 for fileName in glob.glob(os.path.join(scriptDir, "*.py")):
     # skip already created batch files if they exist
     name, ext = os.path.splitext(os.path.basename(fileName))
     if name not in scripts or name == 'byondtools-postinstall':
         continue
 
-    print('Running post-install for {}.'.format(name))
+    print(('Running post-install for {}.'.format(name)))
     # copy the file with the first line replaced with the correct python
     fullName = os.path.join(scriptDir, fileName)
     strippedName = os.path.join(scriptDir, name)
     lines = open(fullName).readlines()
     startidx=1
     if not lines[0].strip().startswith('#!'):
-        print('WARNING: {} does not have a shebang.'.format(name))
+        print(('WARNING: {} does not have a shebang.'.format(name)))
         startidx=0
     
     targetFile = strippedName
@@ -72,4 +72,4 @@ for fileName in glob.glob(os.path.join(scriptDir, "*.py")):
         open(batchFileName, "w").write("@echo off\n\n{}".format(command))
     else:
         os.chmod(strippedName, 0o755)
-        print('CHMOD 755 {}'.format(strippedName))
+        print(('CHMOD 755 {}'.format(strippedName)))

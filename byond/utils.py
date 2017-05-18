@@ -1,5 +1,6 @@
 import hashlib, ast, os, time, sys
 import operator as op
+from functools import reduce
 
 def clock():
     if sys.platform == 'win32':

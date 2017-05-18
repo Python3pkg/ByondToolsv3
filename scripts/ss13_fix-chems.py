@@ -55,7 +55,7 @@ def fixReactions(tree):
                 del catom.properties['result']
                     
             if 'secondary_results' in catom.properties:
-                print(catom.properties['secondary_results'].value)
+                print((catom.properties['secondary_results'].value))
                 secondary_results = ParseDreamList(catom.properties['secondary_results'].value)
                 print(secondary_results)
                 if not secondary_results.inherited:
@@ -118,7 +118,7 @@ def processFile(tree, origin, destination, args):
                     f.write(thing[1] + '\n')
                     
                     atom = tree.GetAtom(thing[1])
-                    for name, prop in atom.properties.items():
+                    for name, prop in list(atom.properties.items()):
                         if prop.inherited: continue
                         f.write('\t{}\n'.format(prop.DumpCode(name)))
                     f.write('\n')

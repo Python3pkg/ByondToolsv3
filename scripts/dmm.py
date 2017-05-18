@@ -69,14 +69,14 @@ def main():
     elif args.MODE == 'transcribe':
         transcribe_dmm(args)
     else:
-        print('!!! Error, unknown MODE=%r' % args.MODE)
+        print(('!!! Error, unknown MODE=%r' % args.MODE))
         
 def transcribe_dmm(args):
     if not os.path.isfile(args.subject):
-        print('File {0} does not exist.'.format(args.subject))
+        print(('File {0} does not exist.'.format(args.subject)))
         sys.exit(1)
     if not os.path.isfile(args.project):
-        print('DM Environment File {0} does not exist.'.format(args.project))
+        print(('DM Environment File {0} does not exist.'.format(args.project)))
         sys.exit(1)
     
     dmm = Map(forgiving_atom_lookups=True)
@@ -87,10 +87,10 @@ def transcribe_dmm(args):
         
 def split_dmm(args):
     if not os.path.isfile(args.map):
-        print('File {0} does not exist.'.format(args.mine))
+        print(('File {0} does not exist.'.format(args.mine)))
         sys.exit(1)
     if not os.path.isfile(args.project):
-        print('DM Environment File {0} does not exist.'.format(args.project))
+        print(('DM Environment File {0} does not exist.'.format(args.project)))
         sys.exit(1)
     
     dmm = Map(forgiving_atom_lookups=True)
@@ -102,7 +102,7 @@ def split_dmm(args):
     for z in range(nz):
         basename,ext = os.path.splitext(args.map)
         outfile='{0}-{1}{2}'.format(basename,z+1,ext)
-        print('>>> Splitting z={}/{} to {}'.format(z+1,nz,outfile))
+        print(('>>> Splitting z={}/{} to {}'.format(z+1,nz,outfile)))
         output = Map(forgiving_atom_lookups=True)
         currentZLevel = dmm.zLevels[z]
         newZLevel = output.CreateZLevel(currentZLevel.height, currentZLevel.width)
@@ -116,17 +116,17 @@ def split_dmm(args):
         output.Save(outfile, format='dmm')
 
 def patch_dmm(args):
-    print(repr(args.patches))
+    print((repr(args.patches)))
     for i in range(len(args.patches[0])):
         patch=args.patches[0][i]
         if not os.path.isfile(patch):
-            print('File {0} does not exist.'.format(patch))
+            print(('File {0} does not exist.'.format(patch)))
             sys.exit(1)
     if not os.path.isfile(args.map):
-        print('File {0} does not exist.'.format(args.mine))
+        print(('File {0} does not exist.'.format(args.mine)))
         sys.exit(1)
     if not os.path.isfile(args.project):
-        print('DM Environment File {0} does not exist.'.format(args.project))
+        print(('DM Environment File {0} does not exist.'.format(args.project)))
         sys.exit(1)
         
     dmm = Map(forgiving_atom_lookups=True)
@@ -148,13 +148,13 @@ def patch_dmm(args):
     def printReport(context, added, removed):
         if context is not None:
             x, y, z = context
-            print(' Z={} +{} -{}'.format(z, added, removed))
+            print((' Z={} +{} -{}'.format(z, added, removed)))
     
     REG_INSTRUCTION = re.compile(r'^(?P<change>[\+\-])(?P<amount>[0-9\*]+)?\s+(?P<atom>/.*)')
     
     for i in range(len(args.patches[0])):
         patch=args.patches[0][i]
-        print('* Applying {}...'.format(patch))
+        print(('* Applying {}...'.format(patch)))
         currentpatch=patch
         with open(patch) as f:
             ln = 0
@@ -194,12 +194,12 @@ def patch_dmm(args):
                             continue
                         curhash = dmm.GetTileAt(x, y, z).GetHash()
                         if afterhash == curhash:
-                            print('Skipping <{},{},{}> (already what we expected)'.format(x, y, z))
+                            print(('Skipping <{},{},{}> (already what we expected)'.format(x, y, z)))
                             skip_block = True
                             continue
                         #else: print('PRE {} != {}: OK'.format(curhash,afterhash))
                         if beforehash != curhash:
-                            print('WARNING: <{},{},{}> has changed.  Operations on this tile may not be accurate!'.format(x, y, z))
+                            print(('WARNING: <{},{},{}> has changed.  Operations on this tile may not be accurate!'.format(x, y, z)))
                             continue
                         #else: print('OLD {} == {}: OK'.format(curhash,beforehash))
                               
@@ -209,7 +209,7 @@ def patch_dmm(args):
                         continue
                     m = REG_INSTRUCTION.match(line)
                     if m is None:
-                        print('{}:{}: MALFORMED INSTRUCTION: {}'.format(args.patch, ln, line))
+                        print(('{}:{}: MALFORMED INSTRUCTION: {}'.format(args.patch, ln, line)))
                         sys.exit(1)
                     amount = m.group('amount')
                     if amount == '*':
@@ -222,7 +222,7 @@ def patch_dmm(args):
                     atom.filename = args.patch
                     atom.line = ln
                     if atom is None:
-                        print('{}:{}: WARNING: Unable to parse instance specified by chunk {}'.format(args.patch, ln, m.group('atom')))
+                        print(('{}:{}: WARNING: Unable to parse instance specified by chunk {}'.format(args.patch, ln, m.group('atom'))))
                         continue
     
                     x, y, z = context
@@ -252,13 +252,13 @@ def patch_dmm(args):
     
 def compare_dmm(args):
     if not os.path.isfile(args.theirs):
-        print('File {0} does not exist.'.format(args.theirs))
+        print(('File {0} does not exist.'.format(args.theirs)))
         sys.exit(1)
     if not os.path.isfile(args.mine):
-        print('File {0} does not exist.'.format(args.mine))
+        print(('File {0} does not exist.'.format(args.mine)))
         sys.exit(1)
     if not os.path.isfile(args.project):
-        print('DM Environment File {0} does not exist.'.format(args.project))
+        print(('DM Environment File {0} does not exist.'.format(args.project)))
         sys.exit(1)
         
     theirs_dmm = Map(forgiving_atom_lookups=True)
@@ -288,9 +288,9 @@ def compare_dmm(args):
             t_zlev = theirs_dmm.zLevels[z]
             m_zlev = mine_dmm.zLevels[z]
             if t_zlev.height != m_zlev.height or t_zlev.width != m_zlev.width:
-                print('!!! ZLEVEL {} HEIGHT/WIDTH MISMATCH: ({},{}) != ({},{})'.format(z, t_zlev.height, t_zlev.width, m_zlev.height, m_zlev.width))
+                print(('!!! ZLEVEL {} HEIGHT/WIDTH MISMATCH: ({},{}) != ({},{})'.format(z, t_zlev.height, t_zlev.width, m_zlev.height, m_zlev.width)))
                 continue
-            print(" Scanning z-level {} ({}x{})...".format(z, t_zlev.height, t_zlev.width))
+            print((" Scanning z-level {} ({}x{})...".format(z, t_zlev.height, t_zlev.width)))
             for y in range(t_zlev.height):
                 for x in range(t_zlev.width):
                     CHANGES = {}
@@ -376,8 +376,8 @@ def compare_dmm(args):
                                 f.write(' = {}\n'.format(key))
                         """
                         writeChanges(f, additions, CHANGES)
-        print('Compared maps: {} differences in {} tiles.'.format(stats['diffs'], stats['tilediffs']))
-        print('Total: {} atoms, {} tiles.'.format(stats['diffs'], stats['tilediffs']))
+        print(('Compared maps: {} differences in {} tiles.'.format(stats['diffs'], stats['tilediffs'])))
+        print(('Total: {} atoms, {} tiles.'.format(stats['diffs'], stats['tilediffs'])))
 
 
 def analyze_dmm(args):
@@ -414,11 +414,11 @@ def analyze_dmm(args):
         return (tmpl_head + body + tmpl_footer).replace('{TITLE}', title).replace('{ROOT}', rewt)
 
     if not os.path.isfile(args.project):
-        print('DM Environment file {0} does not exist.'.format(args.theirs))
+        print(('DM Environment file {0} does not exist.'.format(args.theirs)))
         sys.exit(1)
 
     if not os.path.isfile(args.map):
-        print('Map {0} does not exist.'.format(args.theirs))
+        print(('Map {0} does not exist.'.format(args.theirs)))
         sys.exit(1)
 
     tree = ObjectTree()
@@ -458,7 +458,7 @@ def analyze_dmm(args):
             f.write(MakePage(title='Instance #{0}'.format(atom.ID), depth=1, body=body))
     with open(os.path.join(basedir, 'instances', 'index.html'), 'w') as idx:
         body = '<ul>'
-        for atype, instances in instance_info.items():
+        for atype, instances in list(instance_info.items()):
             body += '<li><b>{0}</b><ul>'.format(atype)
             for iid in instances:
                 body += '<li><a href="{{ROOT}}/instances/{0}.html">#{0}</a></li>'.format(iid)

@@ -8,7 +8,7 @@ Created on Jun 15, 2014
 @author: Rob "N3X15" Nelson <nexisentertainment@gmail.com>
 '''
 
-from map import Map, MapLayer
+from .map import Map, MapLayer
 
 class World(object):
     '''

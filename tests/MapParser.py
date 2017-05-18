@@ -64,8 +64,8 @@ class MapParserTest(unittest.TestCase):
         
     def _show_expected_vs_actual(self,expected,actual):
         if expected != actual:
-            print(' > EXPECTED: {}'.format(expected))
-            print(' > ACTUAL:   {}'.format(actual))
+            print((' > EXPECTED: {}'.format(expected)))
+            print((' > ACTUAL:   {}'.format(actual)))
         
     
     def test_basic_SerializeTile_operation(self):

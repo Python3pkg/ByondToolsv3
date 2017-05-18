@@ -99,10 +99,10 @@ class OffsetPipeLayers(Matcher):
         return False
 
     def Fix(self, atom):
-        print('MIN: {}'.format(PIPING_LAYER_MIN))
-        print('MAX: {}'.format(PIPING_LAYER_MAX))
+        print(('MIN: {}'.format(PIPING_LAYER_MIN)))
+        print(('MAX: {}'.format(PIPING_LAYER_MAX)))
         self.layer = int(atom.getProperty('piping_layer'))
-        print('LAYER: {}'.format(self.layer))
+        print(('LAYER: {}'.format(self.layer)))
         if self.layer < PIPING_LAYER_MIN:
             self.layer = PIPING_LAYER_MIN
             atom.setProperty('piping_layer', PIPING_LAYER_MIN, PropertyFlags.MAP_SPECIFIED)
@@ -350,7 +350,7 @@ class FixVaultFloors(Matcher):
         propChanges = self.ICON_STATE_CHANGES[self.stateKey]
         if 'tag' in atom.mapSpecified:
             atom.mapSpecified.remove('tag')
-        for key, newval in propChanges.items():
+        for key, newval in list(propChanges.items()):
             if key not in atom.mapSpecified:
                 atom.mapSpecified += [key]
             oldval = 'NONE'

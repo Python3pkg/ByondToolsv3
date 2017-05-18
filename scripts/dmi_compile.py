@@ -94,9 +94,9 @@ if __name__ == '__main__':
     yml = []
     with open('dmi_config.yml','r') as f:
         yml = yaml.load(f)
-    print(repr(yml))
+    print((repr(yml)))
     for listItem in yml:
-        for directive,config in listItem.items():
+        for directive,config in list(listItem.items()):
             if directive not in directives:
                 fail('Unknown directive '+directive)
             instruction = directives[directive]

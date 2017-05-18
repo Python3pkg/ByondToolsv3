@@ -10,8 +10,8 @@ from byond.objtree import ObjectTree
 from byond.basetypes import Proc
 
 def dumpSubTypes(atom):
-    print('{}:{}: {}'.format(atom.filename,atom.line,atom.path))
-    for rpath,catom in atom.children.items():
+    print(('{}:{}: {}'.format(atom.filename,atom.line,atom.path)))
+    for rpath,catom in list(atom.children.items()):
         if not isinstance(catom,Proc):
             dumpSubTypes(catom)
 

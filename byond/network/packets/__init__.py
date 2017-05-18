@@ -45,7 +45,7 @@ class Packet:
             
         # TIME FOR ASSUMPTIONS!
         pos = 0
-        for idx, fieldinfo in self.__field_data.items():
+        for idx, fieldinfo in list(self.__field_data.items()):
             dtype = fieldinfo['type']
             propname = fieldinfo['name']
             unpacked = None
@@ -73,7 +73,7 @@ class Packet:
     
     def Serialize(self):            
         msg = b''
-        for idx, fieldinfo in self.__field_data.items():
+        for idx, fieldinfo in list(self.__field_data.items()):
             dtype = fieldinfo['type']
             dat = getattr(self, fieldinfo['name'])
             if dtype == NetTypes.BYTE:

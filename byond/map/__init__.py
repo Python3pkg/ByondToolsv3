@@ -62,9 +62,9 @@ class LocationIterator:
         return self
     
     def __next__(self):
-        return self.next()
+        return next(self)
     
-    def next(self):
+    def __next__(self):
         self.x += 1
         
         zLev = self.map.zLevels[self.z]
@@ -94,9 +94,9 @@ class TileIterator:
         return self
     
     def __next__(self):
-        return self.next()
+        return next(self)
     
-    def next(self):
+    def __next__(self):
         self.pos += 1
             
         if self.pos >= self.max:
@@ -116,9 +116,9 @@ class AtomIterator:
         return self
     
     def __next__(self):
-        return self.next()
+        return next(self)
     
-    def next(self):
+    def __next__(self):
         self.pos += 1
             
         if self.pos >= self.max:
@@ -318,9 +318,9 @@ class Tile(object):
                         dmi.loadAll()
                         _dmis[dmi_path] = dmi
                     except Exception as e:
-                        print(str(e))
+                        print((str(e)))
                         for prop in ['icon', 'icon_state', 'dir']:
-                            print('\t{0}'.format(atom.dumpPropInfo(prop)))
+                            print(('\t{0}'.format(atom.dumpPropInfo(prop))))
                         pass
                 if dmi.img is None:
                     logging.warning('Unable to open {0}!'.format(dmi_path))
@@ -645,7 +645,7 @@ class Map:
             for tile in self.tileTypes:
                 f.write('{0}\n'.format(tile.MapSerialize2(tileFlags, padding)))
             f.write('// Layout\n')
-            for z in self.zLevels.keys():
+            for z in list(self.zLevels.keys()):
                 f.write('\n(1,1,{0}) = {{"\n'.format(z))
                 zlevel = self.zLevels[z]
                 for y in range(zlevel.height):
@@ -719,9 +719,9 @@ class Map:
                         continue
                     
                 if 'icon' not in atom.properties:
-                    print('CRITICAL: UNKNOWN ICON IN {0} (atom #{1})'.format(tile.origID, aid))
-                    print(atom.MapSerialize())
-                    print(atom.MapSerialize(Atom.FLAG_INHERITED_PROPERTIES))
+                    print(('CRITICAL: UNKNOWN ICON IN {0} (atom #{1})'.format(tile.origID, aid)))
+                    print((atom.MapSerialize()))
+                    print((atom.MapSerialize(Atom.FLAG_INHERITED_PROPERTIES)))
                     continue
                 
                 dmi_file = atom.properties['icon'].value
@@ -737,7 +737,7 @@ class Map:
                     try:
                         direction = int(atom.properties['dir'].value)
                     except ValueError:
-                        print('FAILED TO READ dir = ' + repr(atom.properties['dir'].value))
+                        print(('FAILED TO READ dir = ' + repr(atom.properties['dir'].value)))
                         continue
                 
                 icon_key = '{0}:{1}[{2}]'.format(dmi_file, state, direction)
@@ -756,9 +756,9 @@ class Map:
                             dmi = self.loadDMI(dmi_path)
                             self._dmis[dmi_path] = dmi
                         except Exception as e:
-                            print(str(e))
+                            print((str(e)))
                             for prop in ['icon', 'icon_state', 'dir']:
-                                print('\t{0}'.format(atom.dumpPropInfo(prop)))
+                                print(('\t{0}'.format(atom.dumpPropInfo(prop))))
                             pass
                         
                     if dmi.img is None:
@@ -848,9 +848,9 @@ class Map:
                     dmi.loadAll()
                     _dmis[dmi_path] = dmi
                 except Exception as e:
-                    print(str(e))
+                    print((str(e)))
                     for prop in ['icon', 'icon_state', 'dir']:
-                        print('\t{0}'.format(atom.dumpPropInfo(prop)))
+                        print(('\t{0}'.format(atom.dumpPropInfo(prop))))
                     pass
             if dmi.img is None:
                 logging.warning('Unable to open {0}!'.format(dmi_path))
@@ -913,7 +913,7 @@ class Map:
         if 'skip_alpha' in kwargs:
             skip_alpha = kwargs['skip_alpha']
             
-        print('Checking z-level {0}...'.format(z))
+        print(('Checking z-level {0}...'.format(z)))
         instancePositions = {}
         for y in range(self.zLevels[z].height):
             for x in range(self.zLevels[z].width):
@@ -1030,7 +1030,7 @@ class Map:
             filedir = os.path.dirname(os.path.abspath(filename))
             if not os.path.isdir(filedir):
                 os.makedirs(filedir)
-            print(' -> {} ({}x{}) - {} objects'.format(filename, pic.size[0], pic.size[1], pastes))
+            print((' -> {} ({}x{}) - {} objects'.format(filename, pic.size[0], pic.size[1], pastes)))
             pic.save(filename, 'PNG')
                 
     def getBBoxForAtom(self, x, y, atom, icon):

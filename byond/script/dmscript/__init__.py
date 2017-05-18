@@ -65,8 +65,8 @@ class DreamSyntax(object):
         try:
             return self.syntax.parseString(string)
         except pyp.ParseException as err:
-            print(err.line)
-            print("-"*(err.column - 1) + "^")
+            print((err.line))
+            print(("-"*(err.column - 1) + "^"))
             print(err)
         
     def buildSyntax(self):
@@ -250,7 +250,7 @@ class DreamSyntax(object):
         # for i in range(len(toks)):
         #   print('{} = {}'.format(i,toks[i]))
         toks = toks[0]
-        print('makeList(%r)' % toks)
+        print(('makeList(%r)' % toks))
         if len(toks[0]) == 1:  # Constant, so a non-assoc list.
             l = []
             for tok in toks:

@@ -57,12 +57,12 @@ def compare(theirsfile, minefile, parser, reportstream, **kwargs):
             theirsDMI.loadAll()
             theirs = theirsDMI.states
         except SystemError as e:
-            print("!!! Received SystemError in %s, halting: %s" % (theirs.filename, traceback.format_exc(e)))
-            print('# of cells: %d' % len(theirs.states))
-            print('Image h/w: %s' % repr(theirs.size))
+            print(("!!! Received SystemError in %s, halting: %s" % (theirs.filename, traceback.format_exc(e))))
+            print(('# of cells: %d' % len(theirs.states)))
+            print(('Image h/w: %s' % repr(theirs.size)))
             sys.exit(1)
         except Exception as e:
-            print("Received error, continuing: %s" % traceback.format_exc())
+            print(("Received error, continuing: %s" % traceback.format_exc()))
             o += "\n {0}: Received error, continuing: {1}".format(theirsfile, traceback.format_exc())
         for stateName in theirs:
             if stateName not in states:
@@ -73,12 +73,12 @@ def compare(theirsfile, minefile, parser, reportstream, **kwargs):
             mineDMI.loadAll()
             mine = mineDMI.states
         except SystemError as e:
-            print("!!! Received SystemError in %s, halting: %s" % (mine.filename, traceback.format_exc(e)))
-            print('# of cells: %d' % len(mine.states))
-            print('Image h/w: %s' % repr(mine.size))
+            print(("!!! Received SystemError in %s, halting: %s" % (mine.filename, traceback.format_exc(e))))
+            print(('# of cells: %d' % len(mine.states)))
+            print(('Image h/w: %s' % repr(mine.size)))
             sys.exit(1)
         except Exception as e:
-            print("Received error, continuing: %s" % traceback.format_exc())
+            print(("Received error, continuing: %s" % traceback.format_exc()))
             o += "\n {0}: Received error, continuing: {1}".format(minefile, traceback.format_exc())
         for stateName in mine:
             if stateName not in states:
@@ -145,13 +145,13 @@ def compare(theirsfile, minefile, parser, reportstream, **kwargs):
 def get_dmi_header(path, parser):
     if(os.path.isfile(path)):
         dmi = DMI(path)
-        print(dmi.getHeader())        
+        print((dmi.getHeader()))        
 
 def get_dmih(path, parser):
     if(os.path.isfile(path)):
        dmi = DMI(path)
        dmi.loadAll()
-       print(dmi.getDMIH())
+       print((dmi.getDMIH()))
               
 def set_dmi_data(path, headerFile, parser):
     if(os.path.isfile(path)):
@@ -167,12 +167,12 @@ def make_dmi(path, dest, parser):
             dmi.make(path)
             dmi.save(dest)
         except SystemError as e:
-            print("!!! Received SystemError in %s, halting: %s" % (dmi.filename, traceback.format_exc(e)))
-            print('# of cells: %d' % len(dmi.states))
-            print('Image h/w: %s' % repr(dmi.size))
+            print(("!!! Received SystemError in %s, halting: %s" % (dmi.filename, traceback.format_exc(e))))
+            print(('# of cells: %d' % len(dmi.states)))
+            print(('Image h/w: %s' % repr(dmi.size)))
             sys.exit(1)
         except Exception as e:
-            print("Received error, continuing: %s" % traceback.format_exc())
+            print(("Received error, continuing: %s" % traceback.format_exc()))
 
 def make_dmi(path, dest, parser):
     if(os.path.isfile(path)):
@@ -182,27 +182,27 @@ def make_dmi(path, dest, parser):
             dmi.make(path)
             dmi.save(dest)
         except SystemError as e:
-            print("!!! Received SystemError in %s, halting: %s" % (dmi.filename, traceback.format_exc(e)))
-            print('# of cells: %d' % len(dmi.states))
-            print('Image h/w: %s' % repr(dmi.size))
+            print(("!!! Received SystemError in %s, halting: %s" % (dmi.filename, traceback.format_exc(e))))
+            print(('# of cells: %d' % len(dmi.states)))
+            print(('Image h/w: %s' % repr(dmi.size)))
             sys.exit(1)
         except Exception as e:
-            print("Received error, continuing: %s" % traceback.format_exc())
+            print(("Received error, continuing: %s" % traceback.format_exc()))
 
 def disassemble(path, to, parser):
-    print('\tD %s -> %s' % (path, to))
+    print(('\tD %s -> %s' % (path, to)))
     if(os.path.isfile(path)):
         dmi = None
         try:
             dmi = DMI(path)
             dmi.extractTo(to, parser.suppress_post_process)
         except SystemError as e:
-            print("!!! Received SystemError in %s, halting: %s" % (dmi.filename, traceback.format_exc(e)))
-            print('# of cells: %d' % len(dmi.states))
-            print('Image h/w: %s' % repr(dmi.size))
+            print(("!!! Received SystemError in %s, halting: %s" % (dmi.filename, traceback.format_exc(e))))
+            print(('# of cells: %d' % len(dmi.states)))
+            print(('Image h/w: %s' % repr(dmi.size)))
             sys.exit(1)
         except Exception as e:
-            print("Received error, continuing: %s" % traceback.format_exc())
+            print(("Received error, continuing: %s" % traceback.format_exc()))
 
                     
 def cleanup(subject):
@@ -210,15 +210,15 @@ def cleanup(subject):
     for root, _, filenames in os.walk(subject):
         for filename in fnmatch.filter(filenames, '*.new.dmi'):
             path = os.path.join(root, filename)
-            print('RM {0}'.format(path))
+            print(('RM {0}'.format(path)))
             os.remove(path)
 
 def disassemble_all(in_dir, out_dir, parser):
-    print('D_A %s -> %s' % (in_dir, out_dir))
+    print(('D_A %s -> %s' % (in_dir, out_dir)))
     for root, dirnames, filenames in os.walk(out_dir):
         for filename in fnmatch.filter(filenames, '*.new.dmi'):
             path = os.path.join(root, filename)
-            print('RM {0}'.format(path))
+            print(('RM {0}'.format(path)))
             os.remove(path)
     for root, dirnames, filenames in os.walk(in_dir):
         for filename in fnmatch.filter(filenames, '*.dmi'):

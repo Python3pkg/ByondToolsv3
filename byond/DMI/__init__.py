@@ -27,7 +27,7 @@ class DMI:
         self.img = None
         
     def make(self, makefile):
-        print('>>> Compiling %s -> %s' % (makefile, self.filename))
+        print(('>>> Compiling %s -> %s' % (makefile, self.filename)))
         h = DMIH()
         h.parse(makefile)
         for node in h.tokens:
@@ -112,7 +112,7 @@ class DMI:
 
         # copy metadata into new object
         reserved = ('interlace', 'gamma', 'dpi', 'transparency', 'aspect')
-        for k, v in sheet.info.items():
+        for k, v in list(sheet.info.items()):
                 if k in reserved: continue
                 meta.add_text(k, v, 1)
                 
@@ -178,7 +178,7 @@ class DMI:
 
         # copy metadata into new object
         reserved = ('interlace', 'gamma', 'dpi', 'transparency', 'aspect', 'icc_profile')
-        for k, v in img.info.items():
+        for k, v in list(img.info.items()):
                 if k in reserved: continue
                 # print(k, v)
                 meta.add_text(k, v, 1)
@@ -317,7 +317,7 @@ state = "void2"
                 y += 1
             
     def extractAllStates(self, dest, flags=0):
-        for _, state in self.states.items():
+        for _, state in list(self.states.items()):
             # state = State()
             for i in range(len(state.positions)):
                 x, y = state.positions[i]
@@ -350,12 +350,12 @@ state = "void2"
                     if pixel[3] == 0: continue
                     newpix[x, y] = pixel
                 except IndexError:
-                    print("!!! Received IndexError in %s <%d,%d> = <%d,%d> + (<%d,%d> * <%d,%d>), max=<%d,%d> halting." % (self.filename, _x, _y, x, y, sx, sy, self.icon_width, self.icon_height, self.max_x, self.max_y))
-                    print('%s: {sz: %s,h: %d, w: %d, m_x: %d, m_y: %d}' % (self.filename, repr(self.img.size), self.icon_height, self.icon_width, self.max_x, self.max_y))
-                    print('# of cells: %d' % len(self.states))
-                    print('Image h/w: %s' % repr(self.size))
+                    print(("!!! Received IndexError in %s <%d,%d> = <%d,%d> + (<%d,%d> * <%d,%d>), max=<%d,%d> halting." % (self.filename, _x, _y, x, y, sx, sy, self.icon_width, self.icon_height, self.max_x, self.max_y)))
+                    print(('%s: {sz: %s,h: %d, w: %d, m_x: %d, m_y: %d}' % (self.filename, repr(self.img.size), self.icon_height, self.icon_width, self.max_x, self.max_y)))
+                    print(('# of cells: %d' % len(self.states)))
+                    print(('Image h/w: %s' % repr(self.size)))
                     print('--STATES:--')
-                    print(self.statelist)
+                    print((self.statelist))
                     sys.exit(1)
         return icon
                     
@@ -373,7 +373,7 @@ state = "void2"
         try:
             icon.save(nfn)
         except SystemError as e:
-            print("Received SystemError, halting: %s" % traceback.format_exc(e))
-            print('{ih=%d,iw=%d,state=%s,dest=%s,sx=%d,sy=%d,i=%d}' % (self.icon_height, self.icon_width, state.ToString(), dest, sx, sy, i))
+            print(("Received SystemError, halting: %s" % traceback.format_exc(e)))
+            print(('{ih=%d,iw=%d,state=%s,dest=%s,sx=%d,sy=%d,i=%d}' % (self.icon_height, self.icon_width, state.ToString(), dest, sx, sy, i)))
             sys.exit(1)
         return nfn

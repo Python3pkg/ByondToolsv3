@@ -57,7 +57,7 @@ class DMMFormat(BaseMapFormat):
             '(':')'
         }
         nit = self.atomBorders.copy()
-        for start, stop in self.atomBorders.items():
+        for start, stop in list(self.atomBorders.items()):
             if start != stop:
                 nit[stop] = None
         self.atomBorders = nit
@@ -324,7 +324,7 @@ class DMMFormat(BaseMapFormat):
             #    val = base_atom.properties[key]
             #    if key not in currentAtom.properties:
             #        currentAtom.properties[key] = val
-            for key in currentAtom.properties.keys():
+            for key in list(currentAtom.properties.keys()):
                 val = currentAtom.properties[key].value
                 if key in base_atom.properties and val == base_atom.properties[key].value:
                     if key in currentAtom.mapSpecified:
@@ -366,7 +366,7 @@ class DMMFormat(BaseMapFormat):
         atomContents = []
         # print(repr(self.mapSpecified))
         if self.dump_inherited:
-            for key, val in atom.properties.items():
+            for key, val in list(atom.properties.items()):
                 atomContents += ['{0} = {1}'.format(key, val)]
         else:
             for i in range(len(atom.mapSpecified)):

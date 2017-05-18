@@ -112,7 +112,7 @@ def ProcessFile(filename):
                 fixes.write(buffa)
         else:
             if os.path.isfile(fixpath):
-                print('RM {0} ({1})'.format(fixpath,os.sep))
+                print(('RM {0} ({1})'.format(fixpath,os.sep)))
                 os.remove(fixpath)
         # print(' Processed - {0} lines.'.format(ln))
         return fuckups

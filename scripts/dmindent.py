@@ -54,7 +54,7 @@ def processFile(tree, origin, destination, args):
                 elif ttype == 'COMMENT':
                     continue
                 else: 
-                    print('wot is ' + ttype + '?')
+                    print(('wot is ' + ttype + '?'))
     with open(tmp,'r') as inp:
         with open(destination, 'w') as out:
             lastWasBlank=False
@@ -69,7 +69,7 @@ def processFile(tree, origin, destination, args):
                     lastWasBlank=False
                 out.write(line+"\n")
     #os.remove(tmp)
-    print('>>> {0}'.format(destination))
+    print(('>>> {0}'.format(destination)))
                 
 if __name__ == '__main__':
     

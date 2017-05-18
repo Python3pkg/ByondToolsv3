@@ -32,6 +32,6 @@ def GetFixesForNS(namespaces, load_dependencies=True):
                             changed = True
     o = []
     for cat in selected:
-        for _, val in MapFix.all[cat].items():
+        for _, val in list(MapFix.all[cat].items()):
             o += [val()]
     return o

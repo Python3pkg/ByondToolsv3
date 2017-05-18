@@ -41,7 +41,7 @@ def ProcessTechLevels(atom, path=''):
     if path.endswith(')'):
         # print('ignoring '+path)
         return
-    for key, val in atom.properties.items():
+    for key, val in list(atom.properties.items()):
         # if 'obj' in path: print('{}: {}'.format(path,key))
         if key == 'origin_tech':
             tech_origin = {}
@@ -64,17 +64,17 @@ def ProcessTechLevels(atom, path=''):
                     CMTLs[tech] = level
             AtomTechOrigins[path] = tech_origin
             break
-    for key, child in atom.children.items():
+    for key, child in list(atom.children.items()):
         ProcessTechLevels(child, path + '/' + key)
 
 def prettify(tree, indent=0):
     prefix = ' ' * indent
-    for key in tree.keys():
+    for key in list(tree.keys()):
         atom = tree[key]
-        print('{}{}/'.format(prefix, key))
+        print(('{}{}/'.format(prefix, key)))
         prettify(atom.children, indent + len(key))
-        for propkey, value in atom.properties.items():
-            print('{}var/{} = {}'.format(' ' * (indent + len(key)), propkey, repr(value)))
+        for propkey, value in list(atom.properties.items()):
+            print(('{}var/{} = {}'.format(' ' * (indent + len(key)), propkey, repr(value))))
         
 if os.path.isfile(sys.argv[1]):
     tree = ObjectTree()

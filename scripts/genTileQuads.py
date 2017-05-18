@@ -132,7 +132,7 @@ knownQuads = [
     {}, {}, {}, {}
 ]
 def isKnownQuad(i, im, icon_state):
-    for name, kq in knownQuads[i].items():
+    for name, kq in list(knownQuads[i].items()):
         if equal(kq, im):
             return True
     return False
@@ -144,7 +144,7 @@ if os.path.isdir('floor_quads'):
 os.makedirs('floor_quads')
 for icon_state in extract:
     if icon_state not in floors.states:
-        print('Can\'t find state {0}!'.format(icon_state))
+        print(('Can\'t find state {0}!'.format(icon_state)))
         continue
     for d in range(floors.states[icon_state].dirs):
         dirf = 0
@@ -152,12 +152,12 @@ for icon_state in extract:
         if floors.states[icon_state].dirs > 1:
             dirf = directions.IMAGE_INDICES[d]
             dirn = directions.getNameFromDir(dirf)
-        print('{0} {1} {2}'.format(icon_state, dirn, floors.states[icon_state].dirs))
+        print(('{0} {1} {2}'.format(icon_state, dirn, floors.states[icon_state].dirs)))
         img = floors.getFrame(icon_state, dirf, 0)
         for i in range(len(quadDefs)):
             quad = img.crop(quadDefs[i])
             if isKnownQuad(i, quad, icon_state):
-                print('  Skipping quad #{}'.format(i + 1))
+                print(('  Skipping quad #{}'.format(i + 1)))
                 continue
             color = icon_state
             if color.endswith('full'):
@@ -170,7 +170,7 @@ for icon_state in extract:
             knownQuads[i][color] = quad
 
 nfloors = DMI('nfloors.dmi')
-for tileName,tileDef in tileDefs.items():
+for tileName,tileDef in list(tileDefs.items()):
     base = floors.getFrame(tileDef['base'],directions.SOUTH,0)
     for color in tileDef['colors']:
         for arrangement in tileDef['arrangements']:
@@ -196,7 +196,7 @@ for tileName,tileDef in tileDefs.items():
                 if len(arrange) > 1:
                     dirf = directions.IMAGE_INDICES[d]
                     dirn = directions.getNameFromDir(dirf)
-                print(' Generating state {0} ({1})...'.format(repr(state),dirn))
+                print((' Generating state {0} ({1})...'.format(repr(state),dirn)))
                 #print(repr(arrange))
                 img=Image.new('RGBA',(32,32))
                 img.paste(base)

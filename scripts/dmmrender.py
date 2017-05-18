@@ -38,7 +38,7 @@ def renderMap(args):
         kwargs['area'] = args.area
         outfile = args.area[0].replace('/', '_') + '.png'
     if args.render_types:
-        print(repr(args.render_types))
+        print((repr(args.render_types)))
         kwargs['render_types'] = args.render_types
     if args.outfile:
         outfile = args.outfile

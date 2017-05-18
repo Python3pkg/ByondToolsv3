@@ -6,7 +6,7 @@ import sre_constants
 from byond.script.dmscript import ParseDreamList
 
 try:
-    import cPickle as pickle
+    import pickle as pickle
 except:
     import pickle
    
@@ -20,7 +20,7 @@ REGEX_RELATIVE_PROCDEF = re.compile('^(?P<tabs>\t*)(?P<proc>[a-zA-Z0-9_]+)\((?P<
 REGEX_LINE_COMMENT = re.compile('//.*?$')
 
 def debug(filename, line, path, message):
-    print('{0}:{1}: {2} - {3}'.format(filename, line, '/'.join(path), message))
+    print(('{0}:{1}: {2} - {3}'.format(filename, line, '/'.join(path), message)))
     
 class OTRCache:
     #: Only used for obliterating outdated data.
@@ -72,7 +72,7 @@ class OTRCache:
         return True
     
     def PruneFiles(self, file_list):
-        for fn in self.files.keys():
+        for fn in list(self.files.keys()):
             if fn not in file_list:
                 self.files -= [fn]
                 self.log.info(' - {0}'.format(fn))
@@ -81,7 +81,7 @@ class OTRCache:
         self.files[fn] = md5
         
     def GetFiles(self):
-        return self.files.keys()
+        return list(self.files.keys())
         
     def Save(self, atoms):
         with open(self.filename, 'w') as f:
@@ -125,7 +125,7 @@ class ObjectTree:
         self.LeavePreprocessorDirectives = options.get('preprocessor_directives', False)
         
         nit = self.ignoreTokens.copy()
-        for _, stop in self.ignoreTokens.items():
+        for _, stop in list(self.ignoreTokens.items()):
             nit[stop] = None
         self.ignoreTokens = nit
         
@@ -718,7 +718,7 @@ class ObjectTree:
             cpath += [path_item]
             if path_item not in cNode.children:
                 self.log.debug('!!! Unable to find {0} (lost at {1})'.format(path, cNode.path))
-                self.log.debug(' Valid children: {0}'.format(', '.join(cNode.children.keys())))
+                self.log.debug(' Valid children: {0}'.format(', '.join(list(cNode.children.keys()))))
                 return None
             cNode = cNode.children[path_item]
         # print('Found {0}!'.format(path))
@@ -727,7 +727,7 @@ class ObjectTree:
         
 
     def PreprocessLine(self, line):
-        for key, define in self.defines.items():
+        for key, define in list(self.defines.items()):
             if key in line:
                 if key not in self.defineMatchers:
                     try:

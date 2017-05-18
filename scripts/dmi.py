@@ -76,7 +76,7 @@ def main():
 	elif args.MODE == 'cleanup':
 		cleanup(args.basedir, args)
 	else:
-		print('!!! Error, unknown MODE=%r' % args.MODE)
+		print(('!!! Error, unknown MODE=%r' % args.MODE))
 
 
 
